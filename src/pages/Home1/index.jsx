@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Text, Img, Heading, Button } from "../../components";
 import { NavLink } from "react-router-dom";
@@ -9,12 +9,13 @@ export default function Home1Page() {
 
   const [Pen, setPen] = useState(true);
   const [btncolor, setBtnColor] = useState(true);
+  const [color, setColor] = useState();
 
   const handlePen = () => {
     setPen(!Pen)
     setBtnColor(!btncolor)
   }
- const buttonColor = !btncolor ? "lime_400" : "black_900";
+  const buttonColor = !btncolor ? "lime_400" : "black_900";
   const handleReset = () => {
     const canvas = canvasRef.current;
     canvas.width = canvas.offsetWidth;
@@ -29,18 +30,18 @@ export default function Home1Page() {
   const ctxRef = useRef(null);
 
   const handleRed = () => {
-
+    setColor('red')
   }
 
   const handleBlue = () => {
-
+    setColor('blue')
   }
 
   const handleGreen = () => {
-
+    setColor('green')
   }
 
-  
+
 
   return (
     <>
@@ -132,9 +133,9 @@ export default function Home1Page() {
               </div>
 
               <div className="flex space-x-2">
-                <button className="h-8 w-8 bg-red-500 rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500" onClick={handleRed}></button>
-                <button className="h-8 w-8 bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleBlue}></button>
-                <button className="h-8 w-8 bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500" onClick={handleGreen}></button>
+                <button className="h-8 w-8 bg-red-500 rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-800" onClick={handleRed}></button>
+                <button className="h-8 w-8 bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-800" onClick={handleBlue}></button>
+                <button className="h-8 w-8 bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-800" onClick={handleGreen}></button>
               </div>
             </div>
             <div className="h-[837px] w-full mt-[-2px] relative">
@@ -162,6 +163,7 @@ export default function Home1Page() {
                       canvasRef={canvasRef}
                       ctxRef={ctxRef}
                       Pen={Pen}
+                      color={color}
                       elements="elements"
                       setElements="setElements"
                     />

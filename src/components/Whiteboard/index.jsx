@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
-export default function WhiteBoard({ canvasRef, Pen }) {
+export default function WhiteBoard({ canvasRef, Pen, color }) {
     const [isDrawing, setIsDrawing] = useState(false);
-
+    const [ctx,setCtx]= useState(null)
     useEffect(() => {
+
         const canvas = canvasRef.current;
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
         const ctx = canvas.getContext('2d');
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        setCtx(ctx);
     }, [canvasRef]);
+
+    useEffect(() => {
+        if (ctx) {
+            ctx.strokeStyle = color;
+        }
+    }, [color, ctx]);
 
     const handleMouseDown = (e) => {
         if (Pen) return;
