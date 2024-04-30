@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export default function WhiteBoard({ canvasRef, Pen, color, brushvalue }) {
+export default function WhiteBoard({ canvasRef, Pen, color, brushValue }) {
     const [isDrawing, setIsDrawing] = useState(false);
     const [ctx, setCtx] = useState(null)
     useEffect(() => {
@@ -20,10 +20,10 @@ export default function WhiteBoard({ canvasRef, Pen, color, brushvalue }) {
         if (ctx) {
             ctx.strokeStyle = color;
             ctx.lineCap = "round";
-            ctx.lineWidth = brushvalue;
+            ctx.lineWidth = brushValue;
             
         }
-    }, [color, ctx, brushvalue]);
+    }, [color, ctx, brushValue]);
 
     const handleMouseDown = (e) => {
         if (Pen) return;
