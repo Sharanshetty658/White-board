@@ -55,7 +55,7 @@ export default function Home1Page() {
           <div className="flex flex-row justify-start items-center w-[50%] md:w-full mr-8 pl-[483px] gap-2 md:pl-5 sm:mr-5">
             <div className="h-[16px] w-px bg-lime-400" />
             <div className="flex flex-row justify-center w-[38%] p-[9px]">
-              <NavLink to="/" className="mt-[3px]">
+              <NavLink to="/SignIn" className="mt-[3px]">
                 <Text size="xs" as="p" className="!text-gray-900_01 !text-[17.1px]">
                   Sign in
                 </Text>

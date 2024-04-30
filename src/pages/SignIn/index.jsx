@@ -1,8 +1,9 @@
-import React,{useState} from "react";
+import React , {useState}from "react";
 import { Helmet } from "react-helmet";
 import { Button, Input, Text, Img } from "../../components";
 
 export default function LoginPage() {
+
   const [btncolor, setBtnColor] = useState(true);
   const buttonColor = !btncolor ? "lime_400" : "black_900";
   const handleClick = ()=>{
@@ -28,7 +29,7 @@ export default function LoginPage() {
               <div className="flex flex-row sm:flex-col justify-start items-start mb-[13px] gap-[30px] sm:gap-5">
                 <Button href="#" className="mb-[9px]">
                   <Text size="xl" as="p" className="!text-black-900_01">
-                    Sign Up
+                    Sign In
                   </Text>
                 </Button>
                 <Button shape="round" className="w-[50px] mt-[76px] sm:mt-0 rotate-[-9deg]">
@@ -47,20 +48,14 @@ export default function LoginPage() {
               Username
             </Text>
             <div className="flex flex-col items-center justify-start w-[69%] md:w-full mb-[49px]">
-              <Input
-                className="Username"
-                shape="round"
-                size="xs"
-                variant="fill"
-                color="white_A700"
-              />
-              <Text size="lg" as="p" className="mt-[98px] !text-black-900_01" placeholder="Password">
+              <div className="h-[109px] w-full bg-white-A700 shadow-md rounded-[54px]" />
+              <Text size="lg" as="p" className="mt-[98px] !text-black-900_01">
                 Password
               </Text>
               <Input shape="round" name="edittext" className="w-full mt-7" />
               <Button
                 color={buttonColor}
-                onClick={handleClick}
+                onClick= {handleClick}
                 size="sm"
                 className="mt-[114px] sm:px-5 min-w-[296px] rounded-[40px] sm:min-w-full"
               >
