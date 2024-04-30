@@ -9,11 +9,12 @@ export default function Home1Page() {
 
   const [Pen, setPen] = useState(true);
   const [btncolor, setBtnColor] = useState(true);
-  const [color, setColor] = useState();
+  const [color, setColor] = useState("black");
+  const [brushValue, setBrushValue] = useState();
 
   const handlePen = () => {
-    setPen(!Pen)
-    setBtnColor(!btncolor)
+    setPen(!Pen);
+    setBtnColor(!btncolor);
   }
   const buttonColor = !btncolor ? "lime_400" : "black_900";
   const handleReset = () => {
@@ -41,6 +42,10 @@ export default function Home1Page() {
     setColor('green')
   }
 
+  const handleInputChange = (e) => {
+    const newValue = e.target.value !== '' ? parseInt(e.target.value) :'5' ;
+    setBrushValue(newValue);
+};
 
 
   return (
@@ -108,7 +113,7 @@ export default function Home1Page() {
                   </Text>
                 </div>
                 <Text as="p" className="ml-[26px] md:ml-0 sm:ml-5 tracking-[-0.10px]">
-                  an of what you are working on{" "}
+                  acess to your Whiteboard
                 </Text>
               </div>
             </div>
@@ -130,6 +135,15 @@ export default function Home1Page() {
                   onClick={handleReset}>
                   Reset
                 </Button>
+                <input 
+                        className="rounded-[9px] h-[40px] w-[50px] text-center color-white shadow-md"
+                        placeholder="Size"
+                        type="number"
+                        value={brushValue}
+                        onChange={handleInputChange}
+                    >
+                    
+                    </input>
               </div>
 
               <div className="flex space-x-2">

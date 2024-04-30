@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-export default function WhiteBoard({ canvasRef, Pen, color }) {
+export default function WhiteBoard({ canvasRef, Pen, color, brushvalue }) {
     const [isDrawing, setIsDrawing] = useState(false);
-    const [ctx,setCtx]= useState(null)
+    const [ctx, setCtx] = useState(null)
     useEffect(() => {
 
         const canvas = canvasRef.current;
@@ -12,13 +12,18 @@ export default function WhiteBoard({ canvasRef, Pen, color }) {
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         setCtx(ctx);
+
+
     }, [canvasRef]);
 
     useEffect(() => {
         if (ctx) {
             ctx.strokeStyle = color;
+            ctx.lineCap = "round";
+            ctx.lineWidth = brushvalue;
+            
         }
-    }, [color, ctx]);
+    }, [color, ctx, brushvalue]);
 
     const handleMouseDown = (e) => {
         if (Pen) return;
@@ -48,7 +53,7 @@ export default function WhiteBoard({ canvasRef, Pen, color }) {
             onMouseUp={handleMouseUp}
             onMouseOut={handleMouseUp} // Stop drawing if the mouse leaves the canvas
             ref={canvasRef}
-            
+
             className='flex flex-row justify-center w-full mt-[-48px] p-2 md:px-5 shadow-xs max-w-[1200px] border  border-dark h-[740px] rounded-[9px]' // Ensure this class provides necessary styling
         ></canvas>
     );

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const shapes = {
   round: "rounded-[56px]",
+  sqr:"rounded-[9px]"
 };
 const variants = {
   fill: {
@@ -61,7 +62,7 @@ Input.propTypes = {
   prefix: PropTypes.node,
   suffix: PropTypes.node,
   shape: PropTypes.oneOf(["round"]),
-  size: PropTypes.oneOf(["xs"]),
+  size: PropTypes.oneOf(["xs","sqr"]),
   variant: PropTypes.oneOf(["fill"]),
   color: PropTypes.oneOf(["white_A700"]),
 };
