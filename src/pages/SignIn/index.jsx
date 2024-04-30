@@ -1,14 +1,32 @@
 import React , {useState}from "react";
 import { Helmet } from "react-helmet";
 import { Button, Input, Text, Img } from "../../components";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage() {
 
+  const auth = getAuth();
+  const [Email, setEmail]=useState('')
+  const [Password,setPassword] = useState('')
+
   const [btncolor, setBtnColor] = useState(true);
   const buttonColor = !btncolor ? "lime_400" : "black_900";
-  const handleClick = ()=>{
+  const handleClick = (e)=>{
     setBtnColor(!btncolor)
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth,Email,Password)
+      .then((userCredential)=>{
+        const user = userCredential.user;
+        console.log(userCredential)
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode)
+        console.log(errorMessage)
+      });
+
   }
+
 
   return (
     <>
@@ -45,14 +63,19 @@ export default function LoginPage() {
           </div>
           <div className="flex flex-col items-center justify-start w-full gap-[23px] p-11 mx-auto md:p-5 bg-white-A700_01 shadow-sm max-w-[773px] rounded-[84px]">
             <Text size="lg" as="p" className="!text-black-900_01">
-              Username
+              Email
             </Text>
             <div className="flex flex-col items-center justify-start w-[69%] md:w-full mb-[49px]">
-              <div className="h-[109px] w-full bg-white-A700 shadow-md rounded-[54px]" />
+            <Input shape="round" name="edittext" className="w-full mt-7" value={Email}
+            onChange={(e)=>setEmail(e.target.value)}
+            />
+
               <Text size="lg" as="p" className="mt-[98px] !text-black-900_01">
                 Password
               </Text>
-              <Input shape="round" name="edittext" className="w-full mt-7" />
+              <Input shape="round" name="edittext" className="w-full mt-7" value={Password} 
+              onChange={(e)=>setPassword(e.target.value)}
+              />
               <Button
                 color={buttonColor}
                 onClick= {handleClick}
