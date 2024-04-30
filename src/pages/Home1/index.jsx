@@ -43,7 +43,7 @@ export default function Home1Page() {
   }
 
   const handleInputChange = (e) => {
-    const newValue = e.target.value !== '' ? parseInt(e.target.value) :'5' ;
+    const newValue = parseInt(e.target.value) || 5 ;
     setBrushValue(newValue);
 };
 
