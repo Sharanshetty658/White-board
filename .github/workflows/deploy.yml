@@ -19,6 +19,15 @@ jobs:
         with:
           node-version: 18
 
+      # Cache node_modules to speed up builds
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
